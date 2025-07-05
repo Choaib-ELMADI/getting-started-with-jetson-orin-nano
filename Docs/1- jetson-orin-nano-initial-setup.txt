@@ -1,0 +1,28 @@
+1. What you Need Before you Start?
+    * A computer (to flash the OS onto the Jetson Orin Nano)
+    * A microSD card (to flash the OS image and load some AI models) (64 GB or above)
+    * A microSD card adapter
+    * A NVMe SSD (to add more storage to the Jetson)
+
+2. Installing the OS:
+    * Go to: https://www.jetson-ai-lab.com/
+    * Click "Check out our tutorials"
+    * In the tutorials sidebar, click: "Jetson Setup Guide"
+    * Click "🚀 Initial Setup Guide - Jetson Orin Nano"
+    * If your Jetson UEFI firmware version is less than 36.0, check the instructions to update the firmware
+    * Download the "Jetson Orin Nano Developer Kit JetPack 6.x"
+    * A software solution is required to flash this image onto the SD card:
+        - Download and install 'balenaEtcher'
+        - Launch 'balenaEtcher'
+        - Flash the image onto the SD card
+
+3. Adding NVMe SSD Storage:
+    * Just mount the NVMe SSD in its dedicated place.
+
+4. Powering Up and First Boot:
+    * Insert the microSD card into the Jetson Orin Nano
+    * Plug in a mouse, a keyboard and a monitor to the board
+    * Plug in the Ethernet cable
+    * Power up the board
+    * Complete the setup steps in the monitor
+    * AND we are brought to the main desktop (with NVIDIA logo)
