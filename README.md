@@ -30,7 +30,7 @@ Here’s a quick breakdown of the first guide in the `Docs` folder:
 
 </div>
 
-## Goal of This Repository
+## Repository Goals
 
 To make it easy for beginners and first-time users to:
 
