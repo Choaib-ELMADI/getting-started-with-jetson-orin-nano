@@ -81,6 +81,10 @@ Then open a browser and go to: [http://JETSON_IP:8080](http://JETSON_IP:8080)
 
 </div>
 
+## Running a Remote Local AI Server
+
+The third guide in the `Docs` folder shows how to access your Jetson Orin Nano remotely from another computer on the same network. This allows you to treat the Jetson as a local AI server.
+
 ## Repository Goals
 
 To make it easy for beginners and first-time users to:

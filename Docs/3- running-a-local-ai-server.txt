@@ -1,0 +1,10 @@
+1. Running a Remote Local AI Server:
+    * On the Jetson, open 'Settings'
+    * Go to the 'Network' tab and click the settings icon
+    * Copy the 'IPv4 Address'
+    * On another computer connected to the same local network:
+        . Open a browser
+        . Enter the Jetson's IP address followed by the port number
+        . Log in using your credentials
+
+    * The Jetson is now acting as a remote local AI server
