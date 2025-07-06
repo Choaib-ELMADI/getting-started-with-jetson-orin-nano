@@ -2,7 +2,9 @@
 
 # Getting Started with Jetson Orin Nano
 
-This repository is a guide to help you get started with the **Jetson Orin Nano Developer Kit**. It walks through the essential setup steps, recommended tools, and best practices to prepare your board for AI and embedded systems projects.
+This repository is a guide to help you get started with the `Jetson Orin Nano Developer Kit`. It walks through the essential setup steps, recommended tools, and best practices to prepare your board for AI and embedded systems projects.
+
+The **Jetson Orin Nano** is a compact AI development board from **NVIDIA**, designed for edge computing and robotics. It offers powerful GPU and CPU performance, supports deep learning frameworks, and is ideal for running computer vision, machine learning, and embedded AI applications.
 
 <div align="center">
 
@@ -17,7 +19,7 @@ This repository is a guide to help you get started with the **Jetson Orin Nano D
 
 ## Initial Setup Overview
 
-Here’s a quick breakdown of the first guide in the `Docs` folder:
+You can set up the Jetson Orin Nano from scratch using the steps in the first guide. The summary below shows what you'll need and how to get started.
 
 - **What you Need Before you Start**: Tools and hardware required for setup.
 - **Installing the Operating System**: Steps to flash the Jetson OS image onto a microSD card.
@@ -27,6 +29,55 @@ Here’s a quick breakdown of the first guide in the `Docs` folder:
 <div align="center">
 
 ![NVIDIA Jetson Desktop Interface](./Images/nvidia-jetpack-desktop-interface.png)
+
+</div>
+
+## Running a Local LLM
+
+You can run a language model locally on the Jetson Orin Nano using Ollama and Open WebUI. The steps below show how to install and get them running.
+
+### Installing Ollama
+
+```bash
+git clone https://github.com/dusty-nv/jetson-containers
+```
+
+```bash
+bash jetson-containers/install.sh
+```
+
+```bash
+jetson-containers run --name ollama $(autotag ollama)
+```
+
+### Running an LLM on the Command Line
+
+```bash
+ollama run llama3.2:3b
+```
+
+To end the session, type:
+
+```bash
+/bye
+```
+
+### Running an LLM on Open WebUI
+
+```bash
+sudo docker run -d --network=host \
+    -v ${HOME}/open-webui:/app/backend/data \
+    -e OLLAMA_BASE_URL=http://127.0.0.1:11434 \
+    --name open-webui \
+    --restart always \
+    ghcr.io/open-webui/open-webui:main
+```
+
+Then open a browser and go to: [http://JETSON_IP:8080](http://JETSON_IP:8080)
+
+<div align="center">
+
+![Open WebUI Interface](./Images/open-webui-interface.png)
 
 </div>
 
