@@ -1,0 +1,50 @@
+1. Setup a MySQL Server on Ubuntu 22.04:
+    * Update system repositories: sudo apt update
+    * Install the MySQL server: sudo apt-get install mysql-server
+    * Verify MySQL service status: systemctl is-active mysql
+    * Configure the MySQL server: sudo mysql_secure_installation
+    * Log in to the MySQL server:
+        > sudo mysql
+        > ALTER USER 'root'@'localhost'
+            IDENTIFIED WITH mysql_native_password BY 'Password123#@!';
+        > FLUSH PRIVILEGES;
+
+    * Exit current session: QUIT
+    * Log in with already set credentials: mysql -u root -p
+
+2. Install MySQL Workbench on Ubuntu 22.04:
+    -> MySQL Workbench is a Graphical User Interface (GUI) application supported by Oracle Corporation for MySQL database management. This application also comprises a collection of other tools that can be utilized while working with MySQL databases. MySQL Workbench is primarily utilized by the database administrators, architects, and developers for visualizing the database design.
+
+    * Install MySQL Workbench: sudo snap install mysql-workbench-community
+    * Move to the "Applications" menu and search for the MySQL Workbench application and open it.
+
+3. Create a Databse:
+    * Access the MySQL shell: mysql -u root -p
+    * Create a MySQL database: CREATE DATABASE database_name;
+    * View all MySQL databases: SHOW DATABASES;
+    * Select a MySQL database: USE database_name;
+
+4. Connect the Jetson Orin Nano to a Remote MySQL Databse:
+    * Allow remote access to the MySQL server:
+        . Open the MySQL configuration file: sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+        . Find the line: bind-address = 127.0.0.1
+        . Replace it with: bind-address = 0.0.0.0
+        . Save and exit the file
+        . Restart the MySQL service: sudo systemctl restart mysql
+
+    * Open the MySQL shell:
+        > sudo mysql
+        > GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Password123#@!';
+        > FLUSH PRIVILEGES;
+        > QUIT
+
+    * Find the IP address of the MySQL server:
+        . Run one of the following commands: ip a 'or' hostname -I
+        . Note the local IP address
+
+    * Install MySQL Connector on the Jetson Orin Nano: pip install mysql-connector-python
+
+    * Connect using Python:
+        . Use the IP address as the host value
+        . Provide the database name, username, and password
+        . Use mysql-connector-python to send queries and retrieve results

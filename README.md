@@ -15,6 +15,7 @@ The **Jetson Orin Nano** is a compact AI development board from **NVIDIA**, desi
 ## Repository Structure
 
 - **Docs**: Step-by-step setup and usage documentation for the Jetson Orin Nano.
+- **Examples**: Scripts demonstrating how to use the Jetson Orin Nano with other tools.
 - **Images**: Visuals and screenshots related to setup or board usage.
 
 ## Initial Setup Overview
@@ -109,6 +110,95 @@ Once it starts, check the terminal output for the local URL to access the Stable
 
 </div>
 
+## Integrating a Remote MySQL Database
+
+You can configure and connect a MySQL database to the Jetson Orin Nano for data management and application integration.
+
+### MySQL Server Setup on Ubuntu 22.04
+
+```bash
+sudo apt update
+```
+
+```bash
+sudo apt-get install mysql-server
+```
+
+```bash
+systemctl is-active mysql
+```
+
+```bash
+sudo mysql_secure_installation
+```
+
+Then log in:
+
+```bash
+sudo mysql
+```
+
+```bash
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Password123#@!';
+FLUSH PRIVILEGES;
+QUIT
+```
+
+And reconnect:
+
+```bash
+mysql -u root -p
+```
+
+### Install MySQL Workbench
+
+```bash
+sudo snap install mysql-workbench-community
+```
+
+Then launch it from the Applications menu.
+
+### Create and Use a Database
+
+```bash
+mysql -u root -p
+CREATE DATABASE database_name;
+SHOW DATABASES;
+USE database_name;
+```
+
+### Connect the Jetson to a Remote MySQL Server
+
+Edit MySQL config:
+
+```bash
+sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+```
+
+Change `bind-address = 127.0.0.1` to `bind-address = 0.0.0.0`
+
+Restart MySQL:
+
+```bash
+sudo systemctl restart mysql
+```
+
+Allow remote access:
+
+```bash
+sudo mysql
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Password123#@!';
+FLUSH PRIVILEGES;
+```
+
+Install Python connector:
+
+```bash
+pip install mysql-connector-python
+```
+
+Use Python to connect using IP, credentials, and query the database. You can find example scripts for this inside the `Examples` folder.
+
 ## Repository Goals
 
 To make it easy for beginners and first-time users to:
@@ -119,4 +209,4 @@ To make it easy for beginners and first-time users to:
 
 ## Related Work
 
-This repository is part of my **PFA (Projet de Fin d'Année)**, which involves building an AI-powered robotic system using this board as the core controller. It will be linked to the main project repository once completed.
+This repository is part of my **PFA (Projet de Fin d'Année)**. The project is about smart cities and the use of smart sensors to count vehicles and measure things like traffic flow, speed, pollution, and more. The Jetson Orin Nano is used as the main controller. It will be linked to the main project repository once completed.
