@@ -85,6 +85,30 @@ Then open a browser and go to: [http://JETSON_IP:8080](http://JETSON_IP:8080)
 
 The third guide in the `Docs` folder shows how to access your Jetson Orin Nano remotely from another computer on the same network. This allows you to treat the Jetson as a local AI server.
 
+## Running Stable Diffusion
+
+The fourth guide in the `Docs` folder explains how to run Stable Diffusion locally on the Jetson Orin Nano using `jetson-containers`.
+
+Run one of the following commands:
+
+```bash
+jetson-containers run $(autotag stable-diffusion-webui)
+```
+
+or
+
+```bash
+jetson-containers run dustynv/stable-diffusion-webui:r35.3.1
+```
+
+Once it starts, check the terminal output for the local URL to access the Stable Diffusion WebUI.
+
+<div align="center">
+
+![Stable Diffusion WebUI](./Images/stable-diffusion-webui.png)
+
+</div>
+
 ## Repository Goals
 
 To make it easy for beginners and first-time users to:

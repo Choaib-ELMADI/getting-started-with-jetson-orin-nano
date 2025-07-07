@@ -1,0 +1,7 @@
+1. Running Stable Diffusion:
+    * Run the command:
+        > jetson-containers run $(autotag stable-diffusion-webui)
+        or
+        > jetson-containers run dustynv/stable-diffusion-webui:r35.3.1
+
+    * Check the generated local URL
